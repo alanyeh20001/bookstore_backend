@@ -34,6 +34,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_bot_rails'
   gem 'faker', '~> 1.8.4'
+  gem 'timecop'
 end
 
 group :test do
