@@ -1,0 +1,7 @@
+en:
+  authenticate_user_command:
+    invalid_credentials: "The credentials are invalid"
+  decode_authentication_command:
+    token_invalid: "The token is invalid"
+    token_missing: "The token is missing"
+    token_expired: "The token is expired"
