@@ -156,7 +156,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.4)
-  rspec-rails
+  rspec-rails (~> 3.6)
   tzinfo-data
 
 BUNDLED WITH
