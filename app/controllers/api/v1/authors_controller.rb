@@ -5,6 +5,8 @@ module Api
 
       # GET /authors
       def index
+        authorize! :read
+
         @authors = Author.all
 
         render json: @authors
@@ -12,15 +14,19 @@ module Api
 
       # GET /authors/1
       def show
+        authorize! :read
+
         render json: @author
       end
 
       # POST /authors
       def create
+        authorize! :create
+
         @author = Author.new(author_params)
 
         if @author.save
-          render json: @author, status: :created, location: @author
+          render json: @author, status: :created, location: api_v1_author_url(@author)
         else
           render json: @author.errors, status: :unprocessable_entity
         end
@@ -28,6 +34,8 @@ module Api
 
       # PATCH/PUT /authors/1
       def update
+        authorize! :update
+
         if @author.update(author_params)
           render json: @author
         else
@@ -37,6 +45,8 @@ module Api
 
       # DELETE /authors/1
       def destroy
+        authorize! :destroy
+
         @author.destroy
       end
 
