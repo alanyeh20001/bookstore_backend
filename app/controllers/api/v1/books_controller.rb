@@ -6,6 +6,8 @@ module Api
 
       # GET /books
       def index
+        authorize!(:read)
+
         @books = @author.books.all
 
         render json: @books
@@ -13,31 +15,39 @@ module Api
 
       # GET /books/1
       def show
+        authorize!(:read)
+
         render json: @book
       end
 
       # POST /books
       def create
+        authorize!(:create)
+
         @book = @author.books.new(book_params)
 
         if @book.save
-          render json: @book, status: :created, location: @book
+          render json: @book, status: :created, location: api_v1_author_book_path(@author, @book)
         else
-          render json: @book.errors, status: :unprocessable_entity
+          render json: { errors: @book.errors }, status: :unprocessable_entity
         end
       end
 
       # PATCH/PUT /books/1
       def update
+        authorize!(:update)
+
         if @book.update(book_params)
           render json: @book
         else
-          render json: @book.errors, status: :unprocessable_entity
+          render json: { errors: @book.errors }, status: :unprocessable_entity
         end
       end
 
       # DELETE /books/1
       def destroy
+        authorize!(:destroy)
+
         @book.destroy
       end
 
