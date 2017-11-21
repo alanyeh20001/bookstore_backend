@@ -28,7 +28,7 @@ module Api
         if @author.save
           render json: @author, status: :created, location: api_v1_author_url(@author)
         else
-          render json: @author.errors, status: :unprocessable_entity
+          render json: { errors: @author.errors }, status: :unprocessable_entity
         end
       end
 
@@ -37,9 +37,9 @@ module Api
         authorize! :update
 
         if @author.update(author_params)
-          render json: @author
+          render json: @author, status: :ok
         else
-          render json: @author.errors, status: :unprocessable_entity
+          render json: { errors: @author.errors }, status: :unprocessable_entity
         end
       end
 
